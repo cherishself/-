@@ -1,0 +1,8 @@
+class HybridSemanticFusion(nn.Module):
+    def __init__(self, k_clusters):
+        super(HybridSemanticFusion, self).__init__()
+        self.k_clusters = k_clusters
+        self.n_aggregate_patch_tokens = k_clusters * 5
+        self.cluster_performer = KMeans(n_clusters=self.k_clusters, n_init="auto")
+        # # 尝试使用MiniBatchKMeans来减少内存消耗
+        # self.cluster_performer = MiniBatchKMeans(n_clusters=self.k_clusters, n_init="auto")
